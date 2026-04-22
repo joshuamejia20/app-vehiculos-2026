@@ -3,7 +3,9 @@
     require("../sql/conf.php");
 
     try {
-        $sql = "SELECT * FROM no_normalizada";
+        $sql = "SELECT id_no_normalizada, marca, modelo, fecha, CAST(tipo_vehiculo as UNSIGNED) tipo_vehiculo, CAST(tipo_gasolina as UNSIGNED) tipo_gasolina, CAST(tipo_transmision as UNSIGNED) tipo_transmision, color, numero_puertas
+        FROM no_normalizada
+        WHERE id_no_normalizada = '$_POST[id_no_normalizada]'";
         $resultado = mysqli_query($con, $sql);
 
         if($resultado){
@@ -21,7 +23,7 @@
             }else{
                 $response = array(
                     'success'=>false,
-                    'error'=>"No se encontraron vehiculos"
+                    'error'=>"No se encontró el vehiculo seleccionado"
                 );
                 }
         }else{
